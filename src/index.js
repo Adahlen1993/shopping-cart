@@ -23,9 +23,25 @@ const products = (state = initialProducts, action) => {
     return state;
 };
 
+// const totalCosts = (state = 0, action) => {
+//     if (action.type === 'TOTAL_COSTS') {
+//         return [...state, action.payload];
+//     }
+//     return state;
+// };
+
 // Items in the cart, this reducer is incomplete
 const cart = (state = [], action) => {
     // TODO: Products added to the cart
+    if(action.type === 'ADD_TO_CART'){
+        return [...state, action.payload]
+    } 
+    // else if (action.type === 'REMOVE_FROM_CART') {
+    //     return state.filter(!action.payload)
+    // }
+     else if (action.type === 'CLEAR_CART') {
+        return [];
+    }
     
     return state;
 };
@@ -34,7 +50,8 @@ const cart = (state = [], action) => {
 const storeInstance = createStore(
     combineReducers({
         products,
-        cart
+        cart,
+        // totalCosts
     }),
     applyMiddleware(logger)
 );

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function ProductForm({ addNewProduct }) {
   // You will need to keep this state in this component
   // if you're only using something in one component,
   // you do not need to move it to redux
   let [productToAdd, setProductToAdd] = useState({ name: '', price: 0 });
+  const dispatch = useDispatch();
 
   const handlePriceChange = (event) => {
     setProductToAdd({
@@ -24,8 +26,8 @@ function ProductForm({ addNewProduct }) {
     event.preventDefault();
 
     // TODO: Dispatch here, instead of using addNewProduct from parent
-    addNewProduct(productToAdd);
-
+    // addNewProduct(productToAdd);
+    dispatch({type: 'ADD_NEW_PRODUCT', payload: productToAdd})
     // TODO: Clear input fields
 
   };
